@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Price Prediction</h1>
+        <form action="/predict" method="POST">
+            <input type="text" id="symbol" name="symbol" placeholder="Enter Stock Symbol (e.g. AAPL)" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if predicted_price %}
+        <div class="results">
+            <h2>Prediction Results</h2>
+            <p>Today's Closing Price: <strong>{{ closing_price }}</strong></p>
+            <p>Predicted Price for Tomorrow: <strong>{{ predicted_price }}</strong></p>
+            <p>Potential Trend: <strong>{{ trend }}</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
